@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def least_squares_approximation(df: pd.DataFrame, column: str) -> np.ndarray:
+def least_squares_approximation(df: pd.DataFrame, cpu_core: str) -> np.ndarray:
     """
     Calculates the coefficients for the least-squares linear approximation of the specified column's data over time.
 
@@ -13,7 +13,7 @@ def least_squares_approximation(df: pd.DataFrame, column: str) -> np.ndarray:
     where:
         - k is the number of data points
         - x_i are the time values
-        - y_i are the values in the specified column
+        - y_i are the temperature values for the specified cpu core
 
     Args:
         df (pd.DataFrame): The input DataFrame containing the data. Must have a 'time' column for the x-values.
@@ -27,7 +27,7 @@ def least_squares_approximation(df: pd.DataFrame, column: str) -> np.ndarray:
     """
 
     x_values = df['time'].values
-    y_values = df[column].values
+    y_values = df[cpu_core].values
 
     # Ensure x_values are sorted
     indices = np.argsort(x_values)
